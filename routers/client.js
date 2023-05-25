@@ -15,13 +15,20 @@ clientRouter
 		});
 	})
 	.post('/', (req, res) => {
-		res.send('Dodaj!');
+		db.create(req.body);
+		res.render('client/added', {
+			name: req.body.name,
+		});
 	})
 	.put('/:id', (req, res) => {
 		res.send('Zmodyfikuj!');
 	})
 	.delete('/:id', (req, res) => {
-		res.send('Usuń!');
+		db.delete(req.params.id);
+		res.render('client/deleted');
+	})
+	.get('/form/add', (req, res) => {
+		res.render('client/forms/add');
 	});
 
 module.exports = {
