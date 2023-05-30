@@ -11,7 +11,6 @@ class Db {
 
 	async _load() {
 		this._data = JSON.parse(await readFile(this.dbFileName, 'utf-8')).map(obj => new ClientRecord(obj));
-		console.log(this._data);
 	}
 
 	_save() {

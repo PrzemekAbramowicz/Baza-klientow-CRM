@@ -1,5 +1,6 @@
 const express = require('express');
 const { db } = require('../utlis/db');
+const { NotFoundError } = require('../utlis/errors');
 
 const clientRouter = express.Router();
 
@@ -10,13 +11,20 @@ clientRouter
 		});
 	})
 	.get('/:id', (req, res) => {
+		const client = db.getOne(req.params.id);
+
+		if (!client) {
+			throw new NotFoundError();
+		}
+
 		res.render('client/one', {
-			client: db.getOne(req.params.id),
+			client,
 		});
 	})
 	.post('/', (req, res) => {
 		const id = db.create(req.body);
-		res.render('client/added', {
+
+		res.status(201).render('client/added', {
 			name: req.body.name,
 			id,
 		});
@@ -29,15 +37,22 @@ clientRouter
 		});
 	})
 	.delete('/:id', (req, res) => {
-		db.delete(req.params.id);
+		const client = db.getOne(req.params.id);
+		if (!client) {
+            throw new NotFoundError();
+        }
 		res.render('client/deleted');
 	})
 	.get('/form/add', (req, res) => {
 		res.render('client/forms/add');
 	})
 	.get('/form/edit/:id', (req, res) => {
+		const client = db.getOne(req.params.id);
+		if (!client) {
+			throw new NotFoundError();
+		}
 		res.render('client/forms/edit', {
-			client: db.getOne(req.params.id),
+			client,
 		});
 	});
 
