@@ -4,6 +4,8 @@ const methodOverride = require('method-override');
 const { clientRouter } = require('./routers/client');
 const { homeRouter } = require('./routers/home');
 const { db } = require('./utlis/db');
+const { handleError } = require('./utlis/errors');
+
 
 const app = express();
 
@@ -26,9 +28,8 @@ app.set('view engine', '.hbs');
 
 app.use('/', homeRouter);
 app.use('/client', clientRouter);
-app.get('/test', (req, res) => {
-	res.send(db.getOne('14781bbd-d6de-4e21-95f8-c11c407395b2').name);
-});
+
+app.use(handleError)
 
 app.listen(3000, 'localhost', () => {
 	console.log(`Server started on port 3000`);
