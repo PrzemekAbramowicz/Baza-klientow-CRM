@@ -38,10 +38,13 @@ clientRouter
 	})
 	.delete('/:id', (req, res) => {
 		const client = db.getOne(req.params.id);
+		const clientDelete = db.delete(req.params.id);
 		if (!client) {
             throw new NotFoundError();
         }
-		res.render('client/deleted');
+		res.render('client/deleted',{
+			clientDelete,
+		});
 	})
 	.get('/form/add', (req, res) => {
 		res.render('client/forms/add');
