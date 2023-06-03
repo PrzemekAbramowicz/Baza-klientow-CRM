@@ -6,7 +6,7 @@
 
 ```
 
-git clone git@github.com:PrzemekAbramowicz/Baza-klientow-CRM.git .
+git clone https://github.com/PrzemekAbramowicz/Baza-klientow-CRM.git .
 
 npm install
 
