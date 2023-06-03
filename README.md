@@ -21,6 +21,13 @@ npm start
 ```
 
 # For Dr. Piotr Bobiński
+## Projekt bazy klientów CRM w Express.js
+
+## Projekt wykonali
+Przemysław 13804
+Przemysław 13830
+Przemysław 13810
+Paweł 14057
 
 ## Opis problemów napotkanych w trakcie tworzenia projektu
 
