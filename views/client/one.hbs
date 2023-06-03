@@ -41,10 +41,9 @@
 
 
 <p>
-	<form method='GET' action='/client/form/edit/{{client.id}}'>
+	<form class="form-edit-client-goto" method='GET' action='/client/form/edit/{{client.id}}'>
 		<button type='submit'>Edytuj dane</button>
 	</form>
 </p>
-<p>
-	{{> go-to-clients}}
-</p>
+
+{{> go-to-clients}}
